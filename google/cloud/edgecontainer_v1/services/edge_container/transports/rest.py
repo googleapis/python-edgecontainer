@@ -14,25 +14,27 @@
 # limitations under the License.
 #
 
-from google.auth.transport.requests import AuthorizedSession  # type: ignore
-import json  # type: ignore
-import grpc  # type: ignore
-from google.auth.transport.grpc import SslCredentials  # type: ignore
-from google.auth import credentials as ga_credentials  # type: ignore
-from google.api_core import exceptions as core_exceptions
-from google.api_core import retry as retries
-from google.api_core import rest_helpers
-from google.api_core import rest_streaming
-from google.api_core import path_template
-from google.api_core import gapic_v1
-
-from google.protobuf import json_format
-from google.api_core import operations_v1
-from requests import __version__ as requests_version
 import dataclasses
+import json  # type: ignore
 import re
 from typing import Callable, Dict, List, Optional, Sequence, Tuple, Union
 import warnings
+
+from google.api_core import (
+    gapic_v1,
+    operations_v1,
+    path_template,
+    rest_helpers,
+    rest_streaming,
+)
+from google.api_core import exceptions as core_exceptions
+from google.api_core import retry as retries
+from google.auth import credentials as ga_credentials  # type: ignore
+from google.auth.transport.grpc import SslCredentials  # type: ignore
+from google.auth.transport.requests import AuthorizedSession  # type: ignore
+from google.protobuf import json_format
+import grpc  # type: ignore
+from requests import __version__ as requests_version
 
 try:
     OptionalRetry = Union[retries.Retry, gapic_v1.method._MethodDefault]
@@ -40,12 +42,12 @@ except AttributeError:  # pragma: NO COVER
     OptionalRetry = Union[retries.Retry, object]  # type: ignore
 
 
-from google.cloud.edgecontainer_v1.types import resources
-from google.cloud.edgecontainer_v1.types import service
 from google.longrunning import operations_pb2  # type: ignore
 
-from .base import EdgeContainerTransport, DEFAULT_CLIENT_INFO as BASE_DEFAULT_CLIENT_INFO
+from google.cloud.edgecontainer_v1.types import resources, service
 
+from .base import DEFAULT_CLIENT_INFO as BASE_DEFAULT_CLIENT_INFO
+from .base import EdgeContainerTransport
 
 DEFAULT_CLIENT_INFO = gapic_v1.client_info.ClientInfo(
     gapic_version=BASE_DEFAULT_CLIENT_INFO.gapic_version,
@@ -210,7 +212,10 @@ class EdgeContainerRestInterceptor:
 
 
     """
-    def pre_create_cluster(self, request: service.CreateClusterRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[service.CreateClusterRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_create_cluster(
+        self, request: service.CreateClusterRequest, metadata: Sequence[Tuple[str, str]]
+    ) -> Tuple[service.CreateClusterRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for create_cluster
 
         Override in a subclass to manipulate the request or metadata
@@ -218,7 +223,9 @@ class EdgeContainerRestInterceptor:
         """
         return request, metadata
 
-    def post_create_cluster(self, response: operations_pb2.Operation) -> operations_pb2.Operation:
+    def post_create_cluster(
+        self, response: operations_pb2.Operation
+    ) -> operations_pb2.Operation:
         """Post-rpc interceptor for create_cluster
 
         Override in a subclass to manipulate the response
@@ -226,7 +233,12 @@ class EdgeContainerRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_create_node_pool(self, request: service.CreateNodePoolRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[service.CreateNodePoolRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_create_node_pool(
+        self,
+        request: service.CreateNodePoolRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[service.CreateNodePoolRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for create_node_pool
 
         Override in a subclass to manipulate the request or metadata
@@ -234,7 +246,9 @@ class EdgeContainerRestInterceptor:
         """
         return request, metadata
 
-    def post_create_node_pool(self, response: operations_pb2.Operation) -> operations_pb2.Operation:
+    def post_create_node_pool(
+        self, response: operations_pb2.Operation
+    ) -> operations_pb2.Operation:
         """Post-rpc interceptor for create_node_pool
 
         Override in a subclass to manipulate the response
@@ -242,7 +256,12 @@ class EdgeContainerRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_create_vpn_connection(self, request: service.CreateVpnConnectionRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[service.CreateVpnConnectionRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_create_vpn_connection(
+        self,
+        request: service.CreateVpnConnectionRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[service.CreateVpnConnectionRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for create_vpn_connection
 
         Override in a subclass to manipulate the request or metadata
@@ -250,7 +269,9 @@ class EdgeContainerRestInterceptor:
         """
         return request, metadata
 
-    def post_create_vpn_connection(self, response: operations_pb2.Operation) -> operations_pb2.Operation:
+    def post_create_vpn_connection(
+        self, response: operations_pb2.Operation
+    ) -> operations_pb2.Operation:
         """Post-rpc interceptor for create_vpn_connection
 
         Override in a subclass to manipulate the response
@@ -258,7 +279,10 @@ class EdgeContainerRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_delete_cluster(self, request: service.DeleteClusterRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[service.DeleteClusterRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_delete_cluster(
+        self, request: service.DeleteClusterRequest, metadata: Sequence[Tuple[str, str]]
+    ) -> Tuple[service.DeleteClusterRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for delete_cluster
 
         Override in a subclass to manipulate the request or metadata
@@ -266,7 +290,9 @@ class EdgeContainerRestInterceptor:
         """
         return request, metadata
 
-    def post_delete_cluster(self, response: operations_pb2.Operation) -> operations_pb2.Operation:
+    def post_delete_cluster(
+        self, response: operations_pb2.Operation
+    ) -> operations_pb2.Operation:
         """Post-rpc interceptor for delete_cluster
 
         Override in a subclass to manipulate the response
@@ -274,7 +300,12 @@ class EdgeContainerRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_delete_node_pool(self, request: service.DeleteNodePoolRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[service.DeleteNodePoolRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_delete_node_pool(
+        self,
+        request: service.DeleteNodePoolRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[service.DeleteNodePoolRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for delete_node_pool
 
         Override in a subclass to manipulate the request or metadata
@@ -282,7 +313,9 @@ class EdgeContainerRestInterceptor:
         """
         return request, metadata
 
-    def post_delete_node_pool(self, response: operations_pb2.Operation) -> operations_pb2.Operation:
+    def post_delete_node_pool(
+        self, response: operations_pb2.Operation
+    ) -> operations_pb2.Operation:
         """Post-rpc interceptor for delete_node_pool
 
         Override in a subclass to manipulate the response
@@ -290,7 +323,12 @@ class EdgeContainerRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_delete_vpn_connection(self, request: service.DeleteVpnConnectionRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[service.DeleteVpnConnectionRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_delete_vpn_connection(
+        self,
+        request: service.DeleteVpnConnectionRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[service.DeleteVpnConnectionRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for delete_vpn_connection
 
         Override in a subclass to manipulate the request or metadata
@@ -298,7 +336,9 @@ class EdgeContainerRestInterceptor:
         """
         return request, metadata
 
-    def post_delete_vpn_connection(self, response: operations_pb2.Operation) -> operations_pb2.Operation:
+    def post_delete_vpn_connection(
+        self, response: operations_pb2.Operation
+    ) -> operations_pb2.Operation:
         """Post-rpc interceptor for delete_vpn_connection
 
         Override in a subclass to manipulate the response
@@ -306,7 +346,12 @@ class EdgeContainerRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_generate_access_token(self, request: service.GenerateAccessTokenRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[service.GenerateAccessTokenRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_generate_access_token(
+        self,
+        request: service.GenerateAccessTokenRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[service.GenerateAccessTokenRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for generate_access_token
 
         Override in a subclass to manipulate the request or metadata
@@ -314,7 +359,9 @@ class EdgeContainerRestInterceptor:
         """
         return request, metadata
 
-    def post_generate_access_token(self, response: service.GenerateAccessTokenResponse) -> service.GenerateAccessTokenResponse:
+    def post_generate_access_token(
+        self, response: service.GenerateAccessTokenResponse
+    ) -> service.GenerateAccessTokenResponse:
         """Post-rpc interceptor for generate_access_token
 
         Override in a subclass to manipulate the response
@@ -322,7 +369,10 @@ class EdgeContainerRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_get_cluster(self, request: service.GetClusterRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[service.GetClusterRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_get_cluster(
+        self, request: service.GetClusterRequest, metadata: Sequence[Tuple[str, str]]
+    ) -> Tuple[service.GetClusterRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for get_cluster
 
         Override in a subclass to manipulate the request or metadata
@@ -338,7 +388,10 @@ class EdgeContainerRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_get_machine(self, request: service.GetMachineRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[service.GetMachineRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_get_machine(
+        self, request: service.GetMachineRequest, metadata: Sequence[Tuple[str, str]]
+    ) -> Tuple[service.GetMachineRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for get_machine
 
         Override in a subclass to manipulate the request or metadata
@@ -354,7 +407,10 @@ class EdgeContainerRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_get_node_pool(self, request: service.GetNodePoolRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[service.GetNodePoolRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_get_node_pool(
+        self, request: service.GetNodePoolRequest, metadata: Sequence[Tuple[str, str]]
+    ) -> Tuple[service.GetNodePoolRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for get_node_pool
 
         Override in a subclass to manipulate the request or metadata
@@ -370,7 +426,12 @@ class EdgeContainerRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_get_vpn_connection(self, request: service.GetVpnConnectionRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[service.GetVpnConnectionRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_get_vpn_connection(
+        self,
+        request: service.GetVpnConnectionRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[service.GetVpnConnectionRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for get_vpn_connection
 
         Override in a subclass to manipulate the request or metadata
@@ -378,7 +439,9 @@ class EdgeContainerRestInterceptor:
         """
         return request, metadata
 
-    def post_get_vpn_connection(self, response: resources.VpnConnection) -> resources.VpnConnection:
+    def post_get_vpn_connection(
+        self, response: resources.VpnConnection
+    ) -> resources.VpnConnection:
         """Post-rpc interceptor for get_vpn_connection
 
         Override in a subclass to manipulate the response
@@ -386,7 +449,10 @@ class EdgeContainerRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_list_clusters(self, request: service.ListClustersRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[service.ListClustersRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_list_clusters(
+        self, request: service.ListClustersRequest, metadata: Sequence[Tuple[str, str]]
+    ) -> Tuple[service.ListClustersRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for list_clusters
 
         Override in a subclass to manipulate the request or metadata
@@ -394,7 +460,9 @@ class EdgeContainerRestInterceptor:
         """
         return request, metadata
 
-    def post_list_clusters(self, response: service.ListClustersResponse) -> service.ListClustersResponse:
+    def post_list_clusters(
+        self, response: service.ListClustersResponse
+    ) -> service.ListClustersResponse:
         """Post-rpc interceptor for list_clusters
 
         Override in a subclass to manipulate the response
@@ -402,7 +470,10 @@ class EdgeContainerRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_list_machines(self, request: service.ListMachinesRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[service.ListMachinesRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_list_machines(
+        self, request: service.ListMachinesRequest, metadata: Sequence[Tuple[str, str]]
+    ) -> Tuple[service.ListMachinesRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for list_machines
 
         Override in a subclass to manipulate the request or metadata
@@ -410,7 +481,9 @@ class EdgeContainerRestInterceptor:
         """
         return request, metadata
 
-    def post_list_machines(self, response: service.ListMachinesResponse) -> service.ListMachinesResponse:
+    def post_list_machines(
+        self, response: service.ListMachinesResponse
+    ) -> service.ListMachinesResponse:
         """Post-rpc interceptor for list_machines
 
         Override in a subclass to manipulate the response
@@ -418,7 +491,10 @@ class EdgeContainerRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_list_node_pools(self, request: service.ListNodePoolsRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[service.ListNodePoolsRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_list_node_pools(
+        self, request: service.ListNodePoolsRequest, metadata: Sequence[Tuple[str, str]]
+    ) -> Tuple[service.ListNodePoolsRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for list_node_pools
 
         Override in a subclass to manipulate the request or metadata
@@ -426,7 +502,9 @@ class EdgeContainerRestInterceptor:
         """
         return request, metadata
 
-    def post_list_node_pools(self, response: service.ListNodePoolsResponse) -> service.ListNodePoolsResponse:
+    def post_list_node_pools(
+        self, response: service.ListNodePoolsResponse
+    ) -> service.ListNodePoolsResponse:
         """Post-rpc interceptor for list_node_pools
 
         Override in a subclass to manipulate the response
@@ -434,7 +512,12 @@ class EdgeContainerRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_list_vpn_connections(self, request: service.ListVpnConnectionsRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[service.ListVpnConnectionsRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_list_vpn_connections(
+        self,
+        request: service.ListVpnConnectionsRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[service.ListVpnConnectionsRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for list_vpn_connections
 
         Override in a subclass to manipulate the request or metadata
@@ -442,7 +525,9 @@ class EdgeContainerRestInterceptor:
         """
         return request, metadata
 
-    def post_list_vpn_connections(self, response: service.ListVpnConnectionsResponse) -> service.ListVpnConnectionsResponse:
+    def post_list_vpn_connections(
+        self, response: service.ListVpnConnectionsResponse
+    ) -> service.ListVpnConnectionsResponse:
         """Post-rpc interceptor for list_vpn_connections
 
         Override in a subclass to manipulate the response
@@ -450,7 +535,10 @@ class EdgeContainerRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_update_cluster(self, request: service.UpdateClusterRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[service.UpdateClusterRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_update_cluster(
+        self, request: service.UpdateClusterRequest, metadata: Sequence[Tuple[str, str]]
+    ) -> Tuple[service.UpdateClusterRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for update_cluster
 
         Override in a subclass to manipulate the request or metadata
@@ -458,7 +546,9 @@ class EdgeContainerRestInterceptor:
         """
         return request, metadata
 
-    def post_update_cluster(self, response: operations_pb2.Operation) -> operations_pb2.Operation:
+    def post_update_cluster(
+        self, response: operations_pb2.Operation
+    ) -> operations_pb2.Operation:
         """Post-rpc interceptor for update_cluster
 
         Override in a subclass to manipulate the response
@@ -466,7 +556,12 @@ class EdgeContainerRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_update_node_pool(self, request: service.UpdateNodePoolRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[service.UpdateNodePoolRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_update_node_pool(
+        self,
+        request: service.UpdateNodePoolRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[service.UpdateNodePoolRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for update_node_pool
 
         Override in a subclass to manipulate the request or metadata
@@ -474,7 +569,9 @@ class EdgeContainerRestInterceptor:
         """
         return request, metadata
 
-    def post_update_node_pool(self, response: operations_pb2.Operation) -> operations_pb2.Operation:
+    def post_update_node_pool(
+        self, response: operations_pb2.Operation
+    ) -> operations_pb2.Operation:
         """Post-rpc interceptor for update_node_pool
 
         Override in a subclass to manipulate the response
@@ -505,20 +602,21 @@ class EdgeContainerRestTransport(EdgeContainerTransport):
 
     """
 
-    def __init__(self, *,
-            host: str = 'edgecontainer.googleapis.com',
-            credentials: Optional[ga_credentials.Credentials] = None,
-            credentials_file: Optional[str] = None,
-            scopes: Optional[Sequence[str]] = None,
-            client_cert_source_for_mtls: Optional[Callable[[
-                ], Tuple[bytes, bytes]]] = None,
-            quota_project_id: Optional[str] = None,
-            client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
-            always_use_jwt_access: Optional[bool] = False,
-            url_scheme: str = 'https',
-            interceptor: Optional[EdgeContainerRestInterceptor] = None,
-            api_audience: Optional[str] = None,
-            ) -> None:
+    def __init__(
+        self,
+        *,
+        host: str = "edgecontainer.googleapis.com",
+        credentials: Optional[ga_credentials.Credentials] = None,
+        credentials_file: Optional[str] = None,
+        scopes: Optional[Sequence[str]] = None,
+        client_cert_source_for_mtls: Optional[Callable[[], Tuple[bytes, bytes]]] = None,
+        quota_project_id: Optional[str] = None,
+        client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
+        always_use_jwt_access: Optional[bool] = False,
+        url_scheme: str = "https",
+        interceptor: Optional[EdgeContainerRestInterceptor] = None,
+        api_audience: Optional[str] = None,
+    ) -> None:
         """Instantiate the transport.
 
         Args:
@@ -557,7 +655,9 @@ class EdgeContainerRestTransport(EdgeContainerTransport):
         # credentials object
         maybe_url_match = re.match("^(?P<scheme>http(?:s)?://)?(?P<host>.*)$", host)
         if maybe_url_match is None:
-            raise ValueError(f"Unexpected hostname structure: {host}")  # pragma: NO COVER
+            raise ValueError(
+                f"Unexpected hostname structure: {host}"
+            )  # pragma: NO COVER
 
         url_match_items = maybe_url_match.groupdict()
 
@@ -568,10 +668,11 @@ class EdgeContainerRestTransport(EdgeContainerTransport):
             credentials=credentials,
             client_info=client_info,
             always_use_jwt_access=always_use_jwt_access,
-            api_audience=api_audience
+            api_audience=api_audience,
         )
         self._session = AuthorizedSession(
-            self._credentials, default_host=self.DEFAULT_HOST)
+            self._credentials, default_host=self.DEFAULT_HOST
+        )
         self._operations_client: Optional[operations_v1.AbstractOperationsClient] = None
         if client_cert_source_for_mtls:
             self._session.configure_mtls_channel(client_cert_source_for_mtls)
@@ -587,18 +688,20 @@ class EdgeContainerRestTransport(EdgeContainerTransport):
         """
         # Only create a new client if we do not already have one.
         if self._operations_client is None:
-            http_options: Dict[str, List[Dict[str, str]]] = {
-            }
+            http_options: Dict[str, List[Dict[str, str]]] = {}
 
             rest_transport = operations_v1.OperationsRestTransport(
-                    host=self._host,
-                    # use the credentials which are saved
-                    credentials=self._credentials,
-                    scopes=self._scopes,
-                    http_options=http_options,
-                    path_prefix="v1")
+                host=self._host,
+                # use the credentials which are saved
+                credentials=self._credentials,
+                scopes=self._scopes,
+                http_options=http_options,
+                path_prefix="v1",
+            )
 
-            self._operations_client = operations_v1.AbstractOperationsClient(transport=rest_transport)
+            self._operations_client = operations_v1.AbstractOperationsClient(
+                transport=rest_transport
+            )
 
         # Return the client from cache.
         return self._operations_client
@@ -607,19 +710,26 @@ class EdgeContainerRestTransport(EdgeContainerTransport):
         def __hash__(self):
             return hash("CreateCluster")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-            "clusterId" : "",        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {
+            "clusterId": "",
+        }
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: service.CreateClusterRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> operations_pb2.Operation:
+        def __call__(
+            self,
+            request: service.CreateClusterRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> operations_pb2.Operation:
             r"""Call the create cluster method over HTTP.
 
             Args:
@@ -639,11 +749,12 @@ class EdgeContainerRestTransport(EdgeContainerTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'post',
-                'uri': '/v1/{parent=projects/*/locations/*}/clusters',
-                'body': 'cluster',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "post",
+                    "uri": "/v1/{parent=projects/*/locations/*}/clusters",
+                    "body": "cluster",
+                },
             ]
             request, metadata = self._interceptor.pre_create_cluster(request, metadata)
             pb_request = service.CreateClusterRequest.pb(request)
@@ -652,33 +763,35 @@ class EdgeContainerRestTransport(EdgeContainerTransport):
             # Jsonify the request body
 
             body = json_format.MessageToJson(
-                transcoded_request['body'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True
-            )
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
-
-            # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
+                transcoded_request["body"],
                 including_default_value_fields=False,
                 use_integers_for_enums=True,
-            ))
+            )
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
+
+            # Jsonify the query params
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
                 data=body,
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -695,19 +808,26 @@ class EdgeContainerRestTransport(EdgeContainerTransport):
         def __hash__(self):
             return hash("CreateNodePool")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-            "nodePoolId" : "",        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {
+            "nodePoolId": "",
+        }
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: service.CreateNodePoolRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> operations_pb2.Operation:
+        def __call__(
+            self,
+            request: service.CreateNodePoolRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> operations_pb2.Operation:
             r"""Call the create node pool method over HTTP.
 
             Args:
@@ -727,46 +847,51 @@ class EdgeContainerRestTransport(EdgeContainerTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'post',
-                'uri': '/v1/{parent=projects/*/locations/*/clusters/*}/nodePools',
-                'body': 'node_pool',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "post",
+                    "uri": "/v1/{parent=projects/*/locations/*/clusters/*}/nodePools",
+                    "body": "node_pool",
+                },
             ]
-            request, metadata = self._interceptor.pre_create_node_pool(request, metadata)
+            request, metadata = self._interceptor.pre_create_node_pool(
+                request, metadata
+            )
             pb_request = service.CreateNodePoolRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
             # Jsonify the request body
 
             body = json_format.MessageToJson(
-                transcoded_request['body'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True
-            )
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
-
-            # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
+                transcoded_request["body"],
                 including_default_value_fields=False,
                 use_integers_for_enums=True,
-            ))
+            )
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
+
+            # Jsonify the query params
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
                 data=body,
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -783,19 +908,26 @@ class EdgeContainerRestTransport(EdgeContainerTransport):
         def __hash__(self):
             return hash("CreateVpnConnection")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-            "vpnConnectionId" : "",        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {
+            "vpnConnectionId": "",
+        }
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: service.CreateVpnConnectionRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> operations_pb2.Operation:
+        def __call__(
+            self,
+            request: service.CreateVpnConnectionRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> operations_pb2.Operation:
             r"""Call the create vpn connection method over HTTP.
 
             Args:
@@ -815,46 +947,51 @@ class EdgeContainerRestTransport(EdgeContainerTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'post',
-                'uri': '/v1/{parent=projects/*/locations/*}/vpnConnections',
-                'body': 'vpn_connection',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "post",
+                    "uri": "/v1/{parent=projects/*/locations/*}/vpnConnections",
+                    "body": "vpn_connection",
+                },
             ]
-            request, metadata = self._interceptor.pre_create_vpn_connection(request, metadata)
+            request, metadata = self._interceptor.pre_create_vpn_connection(
+                request, metadata
+            )
             pb_request = service.CreateVpnConnectionRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
             # Jsonify the request body
 
             body = json_format.MessageToJson(
-                transcoded_request['body'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True
-            )
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
-
-            # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
+                transcoded_request["body"],
                 including_default_value_fields=False,
                 use_integers_for_enums=True,
-            ))
+            )
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
+
+            # Jsonify the query params
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
                 data=body,
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -871,19 +1008,24 @@ class EdgeContainerRestTransport(EdgeContainerTransport):
         def __hash__(self):
             return hash("DeleteCluster")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: service.DeleteClusterRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> operations_pb2.Operation:
+        def __call__(
+            self,
+            request: service.DeleteClusterRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> operations_pb2.Operation:
             r"""Call the delete cluster method over HTTP.
 
             Args:
@@ -903,37 +1045,40 @@ class EdgeContainerRestTransport(EdgeContainerTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'delete',
-                'uri': '/v1/{name=projects/*/locations/*/clusters/*}',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "delete",
+                    "uri": "/v1/{name=projects/*/locations/*/clusters/*}",
+                },
             ]
             request, metadata = self._interceptor.pre_delete_cluster(request, metadata)
             pb_request = service.DeleteClusterRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
 
             # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True,
-            ))
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -950,19 +1095,24 @@ class EdgeContainerRestTransport(EdgeContainerTransport):
         def __hash__(self):
             return hash("DeleteNodePool")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: service.DeleteNodePoolRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> operations_pb2.Operation:
+        def __call__(
+            self,
+            request: service.DeleteNodePoolRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> operations_pb2.Operation:
             r"""Call the delete node pool method over HTTP.
 
             Args:
@@ -982,37 +1132,42 @@ class EdgeContainerRestTransport(EdgeContainerTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'delete',
-                'uri': '/v1/{name=projects/*/locations/*/clusters/*/nodePools/*}',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "delete",
+                    "uri": "/v1/{name=projects/*/locations/*/clusters/*/nodePools/*}",
+                },
             ]
-            request, metadata = self._interceptor.pre_delete_node_pool(request, metadata)
+            request, metadata = self._interceptor.pre_delete_node_pool(
+                request, metadata
+            )
             pb_request = service.DeleteNodePoolRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
 
             # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True,
-            ))
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -1029,19 +1184,24 @@ class EdgeContainerRestTransport(EdgeContainerTransport):
         def __hash__(self):
             return hash("DeleteVpnConnection")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: service.DeleteVpnConnectionRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> operations_pb2.Operation:
+        def __call__(
+            self,
+            request: service.DeleteVpnConnectionRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> operations_pb2.Operation:
             r"""Call the delete vpn connection method over HTTP.
 
             Args:
@@ -1061,37 +1221,42 @@ class EdgeContainerRestTransport(EdgeContainerTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'delete',
-                'uri': '/v1/{name=projects/*/locations/*/vpnConnections/*}',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "delete",
+                    "uri": "/v1/{name=projects/*/locations/*/vpnConnections/*}",
+                },
             ]
-            request, metadata = self._interceptor.pre_delete_vpn_connection(request, metadata)
+            request, metadata = self._interceptor.pre_delete_vpn_connection(
+                request, metadata
+            )
             pb_request = service.DeleteVpnConnectionRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
 
             # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True,
-            ))
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -1108,19 +1273,24 @@ class EdgeContainerRestTransport(EdgeContainerTransport):
         def __hash__(self):
             return hash("GenerateAccessToken")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: service.GenerateAccessTokenRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> service.GenerateAccessTokenResponse:
+        def __call__(
+            self,
+            request: service.GenerateAccessTokenRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> service.GenerateAccessTokenResponse:
             r"""Call the generate access token method over HTTP.
 
             Args:
@@ -1139,37 +1309,42 @@ class EdgeContainerRestTransport(EdgeContainerTransport):
                     An access token for a cluster.
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'get',
-                'uri': '/v1/{cluster=projects/*/locations/*/clusters/*}:generateAccessToken',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "get",
+                    "uri": "/v1/{cluster=projects/*/locations/*/clusters/*}:generateAccessToken",
+                },
             ]
-            request, metadata = self._interceptor.pre_generate_access_token(request, metadata)
+            request, metadata = self._interceptor.pre_generate_access_token(
+                request, metadata
+            )
             pb_request = service.GenerateAccessTokenRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
 
             # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True,
-            ))
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -1188,19 +1363,24 @@ class EdgeContainerRestTransport(EdgeContainerTransport):
         def __hash__(self):
             return hash("GetCluster")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: service.GetClusterRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> resources.Cluster:
+        def __call__(
+            self,
+            request: service.GetClusterRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> resources.Cluster:
             r"""Call the get cluster method over HTTP.
 
             Args:
@@ -1219,37 +1399,40 @@ class EdgeContainerRestTransport(EdgeContainerTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'get',
-                'uri': '/v1/{name=projects/*/locations/*/clusters/*}',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "get",
+                    "uri": "/v1/{name=projects/*/locations/*/clusters/*}",
+                },
             ]
             request, metadata = self._interceptor.pre_get_cluster(request, metadata)
             pb_request = service.GetClusterRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
 
             # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True,
-            ))
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -1268,19 +1451,24 @@ class EdgeContainerRestTransport(EdgeContainerTransport):
         def __hash__(self):
             return hash("GetMachine")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: service.GetMachineRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> resources.Machine:
+        def __call__(
+            self,
+            request: service.GetMachineRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> resources.Machine:
             r"""Call the get machine method over HTTP.
 
             Args:
@@ -1300,37 +1488,40 @@ class EdgeContainerRestTransport(EdgeContainerTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'get',
-                'uri': '/v1/{name=projects/*/locations/*/machines/*}',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "get",
+                    "uri": "/v1/{name=projects/*/locations/*/machines/*}",
+                },
             ]
             request, metadata = self._interceptor.pre_get_machine(request, metadata)
             pb_request = service.GetMachineRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
 
             # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True,
-            ))
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -1349,19 +1540,24 @@ class EdgeContainerRestTransport(EdgeContainerTransport):
         def __hash__(self):
             return hash("GetNodePool")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: service.GetNodePoolRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> resources.NodePool:
+        def __call__(
+            self,
+            request: service.GetNodePoolRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> resources.NodePool:
             r"""Call the get node pool method over HTTP.
 
             Args:
@@ -1381,37 +1577,40 @@ class EdgeContainerRestTransport(EdgeContainerTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'get',
-                'uri': '/v1/{name=projects/*/locations/*/clusters/*/nodePools/*}',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "get",
+                    "uri": "/v1/{name=projects/*/locations/*/clusters/*/nodePools/*}",
+                },
             ]
             request, metadata = self._interceptor.pre_get_node_pool(request, metadata)
             pb_request = service.GetNodePoolRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
 
             # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True,
-            ))
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -1430,19 +1629,24 @@ class EdgeContainerRestTransport(EdgeContainerTransport):
         def __hash__(self):
             return hash("GetVpnConnection")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: service.GetVpnConnectionRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> resources.VpnConnection:
+        def __call__(
+            self,
+            request: service.GetVpnConnectionRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> resources.VpnConnection:
             r"""Call the get vpn connection method over HTTP.
 
             Args:
@@ -1459,37 +1663,42 @@ class EdgeContainerRestTransport(EdgeContainerTransport):
                     A VPN connection .
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'get',
-                'uri': '/v1/{name=projects/*/locations/*/vpnConnections/*}',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "get",
+                    "uri": "/v1/{name=projects/*/locations/*/vpnConnections/*}",
+                },
             ]
-            request, metadata = self._interceptor.pre_get_vpn_connection(request, metadata)
+            request, metadata = self._interceptor.pre_get_vpn_connection(
+                request, metadata
+            )
             pb_request = service.GetVpnConnectionRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
 
             # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True,
-            ))
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -1508,19 +1717,24 @@ class EdgeContainerRestTransport(EdgeContainerTransport):
         def __hash__(self):
             return hash("ListClusters")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: service.ListClustersRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> service.ListClustersResponse:
+        def __call__(
+            self,
+            request: service.ListClustersRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> service.ListClustersResponse:
             r"""Call the list clusters method over HTTP.
 
             Args:
@@ -1537,37 +1751,40 @@ class EdgeContainerRestTransport(EdgeContainerTransport):
                     List of clusters in a location.
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'get',
-                'uri': '/v1/{parent=projects/*/locations/*}/clusters',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "get",
+                    "uri": "/v1/{parent=projects/*/locations/*}/clusters",
+                },
             ]
             request, metadata = self._interceptor.pre_list_clusters(request, metadata)
             pb_request = service.ListClustersRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
 
             # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True,
-            ))
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -1586,19 +1803,24 @@ class EdgeContainerRestTransport(EdgeContainerTransport):
         def __hash__(self):
             return hash("ListMachines")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: service.ListMachinesRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> service.ListMachinesResponse:
+        def __call__(
+            self,
+            request: service.ListMachinesRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> service.ListMachinesResponse:
             r"""Call the list machines method over HTTP.
 
             Args:
@@ -1615,37 +1837,40 @@ class EdgeContainerRestTransport(EdgeContainerTransport):
                     List of machines in a site.
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'get',
-                'uri': '/v1/{parent=projects/*/locations/*}/machines',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "get",
+                    "uri": "/v1/{parent=projects/*/locations/*}/machines",
+                },
             ]
             request, metadata = self._interceptor.pre_list_machines(request, metadata)
             pb_request = service.ListMachinesRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
 
             # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True,
-            ))
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -1664,19 +1889,24 @@ class EdgeContainerRestTransport(EdgeContainerTransport):
         def __hash__(self):
             return hash("ListNodePools")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: service.ListNodePoolsRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> service.ListNodePoolsResponse:
+        def __call__(
+            self,
+            request: service.ListNodePoolsRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> service.ListNodePoolsResponse:
             r"""Call the list node pools method over HTTP.
 
             Args:
@@ -1693,37 +1923,40 @@ class EdgeContainerRestTransport(EdgeContainerTransport):
                     List of node pools in a cluster.
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'get',
-                'uri': '/v1/{parent=projects/*/locations/*/clusters/*}/nodePools',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "get",
+                    "uri": "/v1/{parent=projects/*/locations/*/clusters/*}/nodePools",
+                },
             ]
             request, metadata = self._interceptor.pre_list_node_pools(request, metadata)
             pb_request = service.ListNodePoolsRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
 
             # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True,
-            ))
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -1742,19 +1975,24 @@ class EdgeContainerRestTransport(EdgeContainerTransport):
         def __hash__(self):
             return hash("ListVpnConnections")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: service.ListVpnConnectionsRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> service.ListVpnConnectionsResponse:
+        def __call__(
+            self,
+            request: service.ListVpnConnectionsRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> service.ListVpnConnectionsResponse:
             r"""Call the list vpn connections method over HTTP.
 
             Args:
@@ -1773,37 +2011,42 @@ class EdgeContainerRestTransport(EdgeContainerTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'get',
-                'uri': '/v1/{parent=projects/*/locations/*}/vpnConnections',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "get",
+                    "uri": "/v1/{parent=projects/*/locations/*}/vpnConnections",
+                },
             ]
-            request, metadata = self._interceptor.pre_list_vpn_connections(request, metadata)
+            request, metadata = self._interceptor.pre_list_vpn_connections(
+                request, metadata
+            )
             pb_request = service.ListVpnConnectionsRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
 
             # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True,
-            ))
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -1822,12 +2065,14 @@ class EdgeContainerRestTransport(EdgeContainerTransport):
         def __hash__(self):
             return hash("UpdateCluster")
 
-        def __call__(self,
-                request: service.UpdateClusterRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> operations_pb2.Operation:
+        def __call__(
+            self,
+            request: service.UpdateClusterRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> operations_pb2.Operation:
             r"""Call the update cluster method over HTTP.
 
             Args:
@@ -1847,11 +2092,12 @@ class EdgeContainerRestTransport(EdgeContainerTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'patch',
-                'uri': '/v1/{cluster.name=projects/*/locations/*/clusters/*}',
-                'body': 'cluster',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "patch",
+                    "uri": "/v1/{cluster.name=projects/*/locations/*/clusters/*}",
+                    "body": "cluster",
+                },
             ]
             request, metadata = self._interceptor.pre_update_cluster(request, metadata)
             pb_request = service.UpdateClusterRequest.pb(request)
@@ -1860,32 +2106,34 @@ class EdgeContainerRestTransport(EdgeContainerTransport):
             # Jsonify the request body
 
             body = json_format.MessageToJson(
-                transcoded_request['body'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True
-            )
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
-
-            # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
+                transcoded_request["body"],
                 including_default_value_fields=False,
                 use_integers_for_enums=True,
-            ))
+            )
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
+
+            # Jsonify the query params
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
                 data=body,
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -1902,12 +2150,14 @@ class EdgeContainerRestTransport(EdgeContainerTransport):
         def __hash__(self):
             return hash("UpdateNodePool")
 
-        def __call__(self,
-                request: service.UpdateNodePoolRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> operations_pb2.Operation:
+        def __call__(
+            self,
+            request: service.UpdateNodePoolRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> operations_pb2.Operation:
             r"""Call the update node pool method over HTTP.
 
             Args:
@@ -1927,45 +2177,50 @@ class EdgeContainerRestTransport(EdgeContainerTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'patch',
-                'uri': '/v1/{node_pool.name=projects/*/locations/*/clusters/*/nodePools/*}',
-                'body': 'node_pool',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "patch",
+                    "uri": "/v1/{node_pool.name=projects/*/locations/*/clusters/*/nodePools/*}",
+                    "body": "node_pool",
+                },
             ]
-            request, metadata = self._interceptor.pre_update_node_pool(request, metadata)
+            request, metadata = self._interceptor.pre_update_node_pool(
+                request, metadata
+            )
             pb_request = service.UpdateNodePoolRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
             # Jsonify the request body
 
             body = json_format.MessageToJson(
-                transcoded_request['body'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True
-            )
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
-
-            # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
+                transcoded_request["body"],
                 including_default_value_fields=False,
                 use_integers_for_enums=True,
-            ))
+            )
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
+
+            # Jsonify the query params
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
                 data=body,
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -1979,140 +2234,140 @@ class EdgeContainerRestTransport(EdgeContainerTransport):
             return resp
 
     @property
-    def create_cluster(self) -> Callable[
-            [service.CreateClusterRequest],
-            operations_pb2.Operation]:
+    def create_cluster(
+        self,
+    ) -> Callable[[service.CreateClusterRequest], operations_pb2.Operation]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._CreateCluster(self._session, self._host, self._interceptor) # type: ignore
+        return self._CreateCluster(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def create_node_pool(self) -> Callable[
-            [service.CreateNodePoolRequest],
-            operations_pb2.Operation]:
+    def create_node_pool(
+        self,
+    ) -> Callable[[service.CreateNodePoolRequest], operations_pb2.Operation]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._CreateNodePool(self._session, self._host, self._interceptor) # type: ignore
+        return self._CreateNodePool(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def create_vpn_connection(self) -> Callable[
-            [service.CreateVpnConnectionRequest],
-            operations_pb2.Operation]:
+    def create_vpn_connection(
+        self,
+    ) -> Callable[[service.CreateVpnConnectionRequest], operations_pb2.Operation]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._CreateVpnConnection(self._session, self._host, self._interceptor) # type: ignore
+        return self._CreateVpnConnection(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def delete_cluster(self) -> Callable[
-            [service.DeleteClusterRequest],
-            operations_pb2.Operation]:
+    def delete_cluster(
+        self,
+    ) -> Callable[[service.DeleteClusterRequest], operations_pb2.Operation]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._DeleteCluster(self._session, self._host, self._interceptor) # type: ignore
+        return self._DeleteCluster(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def delete_node_pool(self) -> Callable[
-            [service.DeleteNodePoolRequest],
-            operations_pb2.Operation]:
+    def delete_node_pool(
+        self,
+    ) -> Callable[[service.DeleteNodePoolRequest], operations_pb2.Operation]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._DeleteNodePool(self._session, self._host, self._interceptor) # type: ignore
+        return self._DeleteNodePool(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def delete_vpn_connection(self) -> Callable[
-            [service.DeleteVpnConnectionRequest],
-            operations_pb2.Operation]:
+    def delete_vpn_connection(
+        self,
+    ) -> Callable[[service.DeleteVpnConnectionRequest], operations_pb2.Operation]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._DeleteVpnConnection(self._session, self._host, self._interceptor) # type: ignore
+        return self._DeleteVpnConnection(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def generate_access_token(self) -> Callable[
-            [service.GenerateAccessTokenRequest],
-            service.GenerateAccessTokenResponse]:
+    def generate_access_token(
+        self,
+    ) -> Callable[
+        [service.GenerateAccessTokenRequest], service.GenerateAccessTokenResponse
+    ]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._GenerateAccessToken(self._session, self._host, self._interceptor) # type: ignore
+        return self._GenerateAccessToken(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def get_cluster(self) -> Callable[
-            [service.GetClusterRequest],
-            resources.Cluster]:
+    def get_cluster(self) -> Callable[[service.GetClusterRequest], resources.Cluster]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._GetCluster(self._session, self._host, self._interceptor) # type: ignore
+        return self._GetCluster(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def get_machine(self) -> Callable[
-            [service.GetMachineRequest],
-            resources.Machine]:
+    def get_machine(self) -> Callable[[service.GetMachineRequest], resources.Machine]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._GetMachine(self._session, self._host, self._interceptor) # type: ignore
+        return self._GetMachine(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def get_node_pool(self) -> Callable[
-            [service.GetNodePoolRequest],
-            resources.NodePool]:
+    def get_node_pool(
+        self,
+    ) -> Callable[[service.GetNodePoolRequest], resources.NodePool]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._GetNodePool(self._session, self._host, self._interceptor) # type: ignore
+        return self._GetNodePool(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def get_vpn_connection(self) -> Callable[
-            [service.GetVpnConnectionRequest],
-            resources.VpnConnection]:
+    def get_vpn_connection(
+        self,
+    ) -> Callable[[service.GetVpnConnectionRequest], resources.VpnConnection]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._GetVpnConnection(self._session, self._host, self._interceptor) # type: ignore
+        return self._GetVpnConnection(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def list_clusters(self) -> Callable[
-            [service.ListClustersRequest],
-            service.ListClustersResponse]:
+    def list_clusters(
+        self,
+    ) -> Callable[[service.ListClustersRequest], service.ListClustersResponse]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._ListClusters(self._session, self._host, self._interceptor) # type: ignore
+        return self._ListClusters(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def list_machines(self) -> Callable[
-            [service.ListMachinesRequest],
-            service.ListMachinesResponse]:
+    def list_machines(
+        self,
+    ) -> Callable[[service.ListMachinesRequest], service.ListMachinesResponse]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._ListMachines(self._session, self._host, self._interceptor) # type: ignore
+        return self._ListMachines(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def list_node_pools(self) -> Callable[
-            [service.ListNodePoolsRequest],
-            service.ListNodePoolsResponse]:
+    def list_node_pools(
+        self,
+    ) -> Callable[[service.ListNodePoolsRequest], service.ListNodePoolsResponse]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._ListNodePools(self._session, self._host, self._interceptor) # type: ignore
+        return self._ListNodePools(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def list_vpn_connections(self) -> Callable[
-            [service.ListVpnConnectionsRequest],
-            service.ListVpnConnectionsResponse]:
+    def list_vpn_connections(
+        self,
+    ) -> Callable[
+        [service.ListVpnConnectionsRequest], service.ListVpnConnectionsResponse
+    ]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._ListVpnConnections(self._session, self._host, self._interceptor) # type: ignore
+        return self._ListVpnConnections(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def update_cluster(self) -> Callable[
-            [service.UpdateClusterRequest],
-            operations_pb2.Operation]:
+    def update_cluster(
+        self,
+    ) -> Callable[[service.UpdateClusterRequest], operations_pb2.Operation]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._UpdateCluster(self._session, self._host, self._interceptor) # type: ignore
+        return self._UpdateCluster(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def update_node_pool(self) -> Callable[
-            [service.UpdateNodePoolRequest],
-            operations_pb2.Operation]:
+    def update_node_pool(
+        self,
+    ) -> Callable[[service.UpdateNodePoolRequest], operations_pb2.Operation]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._UpdateNodePool(self._session, self._host, self._interceptor) # type: ignore
+        return self._UpdateNodePool(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
     def kind(self) -> str:
@@ -2122,6 +2377,4 @@ class EdgeContainerRestTransport(EdgeContainerTransport):
         self._session.close()
 
 
-__all__=(
-    'EdgeContainerRestTransport',
-)
+__all__ = ("EdgeContainerRestTransport",)
