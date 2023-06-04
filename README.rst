@@ -1,3 +1,8 @@
+:**NOTE**: **This github repository is archived. The repository contents and history have moved to** `google-cloud-python`_.
+
+.. _google-cloud-python: https://github.com/googleapis/google-cloud-python/tree/main/packages/google-cloud-edgecontainer
+
+
 Python Client for Distributed Cloud Edge Container API
 ======================================================
 
